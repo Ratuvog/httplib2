@@ -192,7 +192,7 @@ def _errno_from_exception(e):
     # https://github.com/httplib2/httplib2/pull/202
     if hasattr(e, "socket_err"):
         e_int = e.socket_err
-        return e_int.args[0].errno if isinstance(e_int.args[0], socket.error) else e_int.errno
+        return e_int.args[0].errno if len(e_int.args) > 0 and isinstance(e_int.args[0], socket.error) else e_int.errno
 
     return None
 
